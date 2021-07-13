@@ -38,7 +38,6 @@ const Members = () => {
             state.members.map((ele) => {
               console.log("userId", state.id.userId);
               console.log("posterId", ele.poster_id);
-
               if (state.id.userId === ele.poster_id) {
                 return (
                   <div className="">
