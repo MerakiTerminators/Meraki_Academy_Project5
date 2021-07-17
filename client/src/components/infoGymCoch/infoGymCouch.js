@@ -68,7 +68,7 @@ const GymAndCouchInfo = ({ id }) => {
 
   const sendMessage = () => {
     const user = jwt.decode(state.token);
-    console.log("....user....",user);
+    console.log("....user....", user);
     const messageContent = {
       role,
       content: {
@@ -99,26 +99,19 @@ const GymAndCouchInfo = ({ id }) => {
       <div className="hamish"></div>
       <div className="devDes">
         <div>
-          <img
-            className="ImgCoachGym"
-            src={state.GymOrCouch && state.GymOrCouch[0].image}
-            alt=""
-          ></img>
+          <img className="ImgCoachGym" src={state.GymOrCouch && state.GymOrCouch[0].image} alt=""></img>
         </div>
         <div>
           <div className="NameLabel">
-            {state.GymOrCouch &&
-              state.GymOrCouch[0].firstName +
-                `  ` +
-                state.GymOrCouch[0].lastName}
+            {state.GymOrCouch && state.GymOrCouch[0].firstName + `  ` + state.GymOrCouch[0].lastName}
           </div>
-          <div className="DesLabel">
-            {state.GymOrCouch && state.GymOrCouch[0].description}
-          </div>
+          <div className="DesLabel">{state.GymOrCouch && state.GymOrCouch[0].description}</div>
         </div>
         <div className="buttonLeft">
           <Button className="styleButton123" variant="outline-dark">
-          <a href="http://localhost:3032/" className="aHrefStyle">video  </a>
+            <a href="http://localhost:3032/" className="aHrefStyle">
+              video{" "}
+            </a>
           </Button>
           <Button
             className="styleButton123"
@@ -137,15 +130,11 @@ const GymAndCouchInfo = ({ id }) => {
       <div className="devPosts">
         <div>
           {state.allPosts &&
-            state.allPosts.map((ele , a) => {
+            state.allPosts.map((ele, a) => {
               return (
                 <div className="postPhotoInfoPage">
                   <div className="backgroundPhotoCard">
-                    <img
-                      alt="postPhoto"
-                      src={ele.photo}
-                      className="photoPostSlider"
-                    />
+                    <img alt="postPhoto" src={ele.photo} className="photoPostSlider" />
                     <Button
                       className="styleButton123  favButton"
                       variant="outline-dark"
@@ -175,10 +164,7 @@ const GymAndCouchInfo = ({ id }) => {
                             if (elem[0].postID === ele.post_id) {
                               return (
                                 <div className="borderCommentStyle9">
-                                  <span className="nameUserAddCommentStyle1">
-                                    {elem[0].firstName} :{" "}
-                                  </span>{" "}
-                                  &nbsp;
+                                  <span className="nameUserAddCommentStyle1">{elem[0].firstName} : </span> &nbsp;
                                   <span>{elem[0].comment}</span>
                                 </div>
                               );
@@ -233,19 +219,11 @@ const GymAndCouchInfo = ({ id }) => {
             return (
               <div className="liveChatGridStyle1">
                 <div>
-                  <img
-                    src={ele.authorPhoto}
-                    className="imageLiveChatStyle1"
-                    alt=" "
-                  />
+                  <img src={ele.authorPhoto} className="imageLiveChatStyle1" alt=" " />
                 </div>
                 <div key={i} className="allStyle1">
-                  <div className="liveChatAutherNameStyle1">
-                    [ {ele.author} ]
-                  </div>
-                  <div className="liveChatAutherMessageStyle1">
-                    {ele.message}
-                  </div>
+                  <div className="liveChatAutherNameStyle1">[ {ele.author} ]</div>
+                  <div className="liveChatAutherMessageStyle1">{ele.message}</div>
                 </div>
               </div>
             );
@@ -259,7 +237,7 @@ const GymAndCouchInfo = ({ id }) => {
             placeholder="Write your message here ..."
             onChange={(e) => setMessage(e.target.value)}
           />
-          <Button  variant="outline-dark" className="buttonTextereaStyle1" onClick={sendMessage}>
+          <Button variant="outline-dark" className="buttonTextereaStyle1" onClick={sendMessage}>
             Send
           </Button>
         </div>

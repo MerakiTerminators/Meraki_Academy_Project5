@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-import { Button } from "react-bootstrap";
+
 import "./footer.css";
 
 const Footer = () => {
@@ -132,7 +132,9 @@ const Footer = () => {
                         ></textarea>
                       </div>
                       <div onClick={emailSend} class="u-align-left u-form-group u-form-submit u-form-group-4">
-                        <Button class="styleButton">Submit</Button>
+                        <a href="#" class="u-btn u-btn-submit u-button-style u-white u-btn-1">
+                          Submit
+                        </a>
                         <input type="submit" value="submit" class="u-form-control-hidden" />
                         {message ? <p>Message Successfully send </p> : ""}
                       </div>
