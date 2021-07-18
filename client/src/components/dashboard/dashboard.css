@@ -63,9 +63,9 @@
 .redBorder{
   border:soled red 5px;
 }
-.padd {
+.padd1 {
   width:75rem;
-  margin-left: 28rem;
+  margin-left: 22.5rem;
   margin-top: 3rem;
 }
 
@@ -143,3 +143,4 @@
   height:16rem ;
   width: 100%;
 }
+

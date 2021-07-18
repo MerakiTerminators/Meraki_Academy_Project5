@@ -39,11 +39,14 @@ const Dashboard = () => {
 
   function saveToken(token) {
     const user = jwt.decode(token);
-    console.log("token decoded", user);
+    // console.log("token decoded", user);
     if (user) {
       dispatch(setToken({ token, user, loggedIn: true }));
     }
   }
+  useEffect(() => {
+    
+  }, []);
 
   const getAllSports = () => {
     axios
@@ -98,7 +101,7 @@ const Dashboard = () => {
         <div className="borderStyleT"></div>
       </div>
       <div className="redBorder">
-        <Row md={3} className="g-4 padd">
+        <Row md={3} className="g-4 padd1">
           {state.sports.map((elem, i) => (
             <Col>
               <Card style={{ width: "22rem", marginButton: "0rem", height: "22rem" }} className="newMarg">

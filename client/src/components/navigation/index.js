@@ -87,7 +87,7 @@ const Navigation = () => {
             </Nav.Link>
             <Nav.Link>
               {!state.token ? (
-                <Link to="/login" style={{ color: "black" }}>
+                <Link to="/signIn" style={{ color: "black" }}>
                   Login
                 </Link>
               ) : (
@@ -124,7 +124,7 @@ const Navigation = () => {
                 )}
                 <NavDropdown.Item>
                   {state.token ? (
-                    <Link to="/login" style={{ color: "black" }}>
+                    <Link to="/signIn" style={{ color: "black" }}>
                       LogOut
                     </Link>
                   ) : (
