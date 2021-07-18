@@ -5,7 +5,7 @@ const socket = require("socket.io");
 const db = require("./db/db");
 const path = require("path");
 
-//routers
+//routers//
 const registerRouter = require("./routers/routes/auth/signUp");
 const loginRouter = require("./routers/routes/auth/login");
 const favoriteRouter = require("./routers/routes/favorite");

@@ -1,5 +1,6 @@
 let token = localStorage.getItem("token") ? localStorage.getItem("token") : "";
-let loggedIn = localStorage.getItem("token") ? true : false;
+let loggedIn = localStorage.getItem("token").length > 10 ? true : false;
+
 
 const initialState = {
   token: token,
