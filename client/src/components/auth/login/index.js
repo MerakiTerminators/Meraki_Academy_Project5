@@ -19,7 +19,6 @@ const Login = () => {
     return {
       token: state.loginReducer.token,
       user: state.loginReducer.user,
-      loggedIn: state.loginReducer.loggedIn,
       sports: state.sportReducer.sports,
     };
   });
@@ -29,7 +28,7 @@ const Login = () => {
     // exists login directly if not signup this user
     // in data base and put the role_id is 2 like user
     localStorage.setItem("token", response.accessToken);
-    dispatch(setToken({ token: response.accessToken, loggedIn: true }));
+    dispatch(setToken({ token: response.accessToken}));
     history.push("/");
   };
 
@@ -39,7 +38,7 @@ const Login = () => {
 
   const loggedOut = () => {
     localStorage.clear();
-    dispatch(setToken({ token: "", user: {}, loggedIn: false }));
+    dispatch(setToken({ token: "", user: {} }));
   };
   //this function to handle the submitted form
   const handleSubmit = (e) => {
@@ -49,7 +48,7 @@ const Login = () => {
       .then((result) => {
         if (result) {
           const user = jwt.decode(result.data);
-          dispatch(setToken({ token: result.data, user, loggedIn: true }));
+          dispatch(setToken({ token: result.data, user }));
           localStorage.setItem("token", result.data);
           setMessage("The user has been loggedIn successfully ");
           setTimeout(function () {

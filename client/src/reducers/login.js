@@ -1,17 +1,15 @@
 let token = localStorage.getItem("token") ? localStorage.getItem("token") : "";
-let loggedIn = localStorage.getItem("token").length > 10 ? true : false;
 
 
 const initialState = {
   token: token,
-  user: {},
-  loggedIn: loggedIn,
+  user: {}
 };
 
 const loginReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case "SET_TOKEN":
-      return { token: payload.token, user: payload.user, loggedIn: payload.loggedIn };
+      return { token: payload.token, user: payload.user };
     default:
       return state;
   }
