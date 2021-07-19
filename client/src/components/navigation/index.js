@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { decode } from "jsonwebtoken";
 import { setSearch111 } from "./../../reducers/search";
+import { setToken } from "../../../src/reducers/login";
 import { FormControl, Form, Navbar, Nav, NavDropdown, Button, Image } from "react-bootstrap";
 import axios from "axios";
 import "./navigation.css";
@@ -12,6 +13,7 @@ const Navigation = () => {
   const [search, setSearch] = useState("");
   const [name, setName] = useState("");
   const [show, setShow] = useState(false);
+  const [user, setUser] = useState({});
   const dispatch = useDispatch();
   const state = useSelector((state) => {
     return {
@@ -19,10 +21,20 @@ const Navigation = () => {
       profile: state.profileReducers.profile,
     };
   });
-  const user = decode(localStorage.getItem("token"));
 
+  const loggedOut = () => {
+
+    dispatch(setToken({ token: "", user: {} }));
+  };
   useEffect(() => {
     if (state.token) {
+      console.log("CCC Token:", (state.token))
+
+      console.log("DDD decode:", decode(state.token))
+
+      setUser(decode(state.token))
+      console.log("BBB USER:", user)
+
       axios
         .get(`/users/${user.userId}`)
         .then((res) => {
@@ -32,10 +44,8 @@ const Navigation = () => {
         .catch((err) => {
           console.log(err);
         });
-    } else {
-
     }
-  }, []);
+  }, [state.token]);
 
   const searchFun = async () => {
     const searchedGym = await axios.post("/search", {
@@ -89,7 +99,7 @@ const Navigation = () => {
             </Nav.Link>
             <Nav.Link>
               {!state.token ? (
-                <Link to="/signIn" style={{ color: "black" }}>
+                <Link to="/login" style={{ color: "black" }}>
                   Login
                 </Link>
               ) : (
@@ -103,30 +113,30 @@ const Navigation = () => {
                   <div></div>
                 ) : (
                   <div>
-                  <NavDropdown.Item>
-                    <Link to="/posts" style={{color: "black"}}>My Posts</Link>
-                  </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to="/posts" style={{ color: "black" }}>My Posts</Link>
+                    </NavDropdown.Item>
                     <NavDropdown.Divider />
                   </div>
                 )}
                 {user && user.roleId === 2 ? (
                   <div>
-                  <NavDropdown.Item>
-                    <Link to="/user" style={{color: "black"}}>Profile</Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
+                    <NavDropdown.Item>
+                      <Link to="/user" style={{ color: "black" }}>Profile</Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider />
                   </div>
                 ) : (
-                  <div> 
-                  <NavDropdown.Item>
-                    <Link to="/profile" style={{color: "black"}}>Profile</Link>
-                  </NavDropdown.Item>
+                  <div>
+                    <NavDropdown.Item>
+                      <Link to="/profile" style={{ color: "black" }}>Profile</Link>
+                    </NavDropdown.Item>
                     <NavDropdown.Divider />
                   </div>
                 )}
                 <NavDropdown.Item>
                   {state.token ? (
-                    <Link to="/signIn" style={{ color: "black" }}>
+                    <Link to="/login" onClick={loggedOut} style={{ color: "black" }}>
                       LogOut
                     </Link>
                   ) : (

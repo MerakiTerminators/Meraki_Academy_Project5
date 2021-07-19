@@ -1,8 +1,6 @@
-let token = localStorage.getItem("token") ? localStorage.getItem("token") : "no token";
-
 
 const initialState = {
-  token: token,
+  token: '',
   user: {}
 };
 

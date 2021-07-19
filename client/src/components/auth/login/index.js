@@ -11,8 +11,8 @@ import "./login.css";
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("maisaa.alkhedr@gmail.com");
+  const [password, setPassword] = useState("0000");
   const [message, setMessage] = useState("");
 
   const state = useSelector((state) => {
@@ -28,12 +28,13 @@ const Login = () => {
     // exists login directly if not signup this user
     // in data base and put the role_id is 2 like user
     localStorage.setItem("token", response.accessToken);
-    dispatch(setToken({ token: response.accessToken}));
+    dispatch(setToken({ token: response.accessToken }));
     history.push("/");
   };
 
   useEffect(() => {
-    loggedOut();
+    // loggedOut();
+    console.log("token ......",state.token)
   }, []);
 
   const loggedOut = () => {
@@ -46,19 +47,19 @@ const Login = () => {
     axios
       .post("/login", { email, password })
       .then((result) => {
+        const user = jwt.decode(result.data)
+        console.log('USER:', user)
         if (result) {
-          const user = jwt.decode(result.data);
           dispatch(setToken({ token: result.data, user }));
-          localStorage.setItem("token", result.data);
+
           setMessage("The user has been loggedIn successfully ");
-          setTimeout(function () {
-            if (user.roleId == 3 || user.roleId == 4) {
-              history.push("/posts");
-            } else {
-              history.push("/dashboard");
-              window.location.reload();
-            }
-          }, 0);
+          if (user.roleId == 3 || user.roleId == 4) {
+            history.push("/posts");
+          } else {
+            history.push("/dashboard");
+            // window.location.reload();
+          }
+
         } else {
           setMessage("Error happened while login, please try again");
         }
@@ -83,6 +84,7 @@ const Login = () => {
                 type="email"
                 placeholder="Enter email"
                 name="email"
+                value= {email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
@@ -93,6 +95,7 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 name="password"
+                value= {password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />

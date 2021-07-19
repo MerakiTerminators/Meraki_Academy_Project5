@@ -294,7 +294,7 @@ const GymAndCouchInfo = ({ id }) => {
           <Button
             variant="outline-dark"
             className="joinUsAndRegisterButton2"
-            onClick={() =>{ history.push("/signIn")}}
+            onClick={() =>{ history.push("/login")}}
             >
             Login
           </Button>
