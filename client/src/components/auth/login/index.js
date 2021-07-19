@@ -44,7 +44,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("/signIn", { email, password })
+      .post("/login", { email, password })
       .then((result) => {
         if (result) {
           const user = jwt.decode(result.data);

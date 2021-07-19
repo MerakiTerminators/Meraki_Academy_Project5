@@ -1,4 +1,4 @@
-let token = localStorage.getItem("token").length > 10 ? localStorage.getItem("token") : "";
+let token = localStorage.getItem("token") ? localStorage.getItem("token") : "no token";
 
 
 const initialState = {
