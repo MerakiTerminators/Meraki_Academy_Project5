@@ -13,13 +13,13 @@ const Navigation = () => {
   const [name, setName] = useState("");
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
-  const user = decode(localStorage.getItem("token"));
   const state = useSelector((state) => {
     return {
       token: state.loginReducer.token,
       profile: state.profileReducers.profile,
     };
   });
+  const user = decode(localStorage.getItem("token"));
 
   useEffect(() => {
     if (state.token) {
@@ -32,6 +32,8 @@ const Navigation = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else {
+
     }
   }, []);
 
